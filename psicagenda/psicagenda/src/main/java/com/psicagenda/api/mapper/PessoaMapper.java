@@ -1,6 +1,7 @@
 package com.psicagenda.api.mapper;
 
 import com.psicagenda.api.enums.TipoCliente;
+import com.psicagenda.api.mapper.representations.CadastroRepresentationInput;
 import com.psicagenda.api.mapper.representations.PessoaRepesentation;
 import com.psicagenda.api.mapper.representations.PessoaRepresentationInput;
 import com.psicagenda.api.model.Pessoas;
@@ -35,6 +36,15 @@ public class PessoaMapper {
         return Pessoas.builder()
                 .nomePessoa(pessoaInput.getNome())
                 .tipoCliente(getTipoEnum(pessoaInput.getTipoCLiente()))
+                .build();
+    }
+
+    public PessoaRepresentationInput toPessoaRepresentationInput(CadastroRepresentationInput cadastro,
+                                                                 String tipoCliente) {
+
+        return PessoaRepresentationInput.builder()
+                .nome(cadastro.getNomePessoa())
+                .tipoCLiente(tipoCliente)
                 .build();
     }
 
