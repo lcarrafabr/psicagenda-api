@@ -33,10 +33,4 @@ public class UsuarioController {
                 repository.findAll()
         );
     }
-
-    public ResponseEntity<UsuarioRepresentation> cadastrarUsuario(@Valid @RequestBody UsuarioRepresentationInput usuarioInput,
-                                                                  HttpServletResponse response) {
-
-        return null;
-    }
 }

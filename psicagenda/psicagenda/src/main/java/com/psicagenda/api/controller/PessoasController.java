@@ -37,17 +37,6 @@ public class PessoasController {
         return pessoaMapper.toListPessoaRepresentation(repository.findAll());
     }
 
-    @PostMapping
-    public ResponseEntity<PessoaRepesentation> cadastrarPessoa(@Valid @RequestBody PessoaRepresentationInput pessoaInput, HttpServletResponse response) {
-
-        Pessoas pessoaRetorno = pessoaService.cadastrarPessoa(pessoaInput, response);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(
-                pessoaMapper.toPessoaResponseRepresentation(pessoaRetorno)
-        );
-    }
-
-
     @GetMapping("/{codigoPessoa}")
     public PessoaRepesentation buscaPessoaPorId(@PathVariable String codigoPessoa) {
 
