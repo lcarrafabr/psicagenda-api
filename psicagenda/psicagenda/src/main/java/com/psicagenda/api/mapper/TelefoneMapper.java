@@ -2,6 +2,8 @@ package com.psicagenda.api.mapper;
 
 import com.psicagenda.api.mapper.representations.PessoaIdRRepresentation;
 import com.psicagenda.api.mapper.representations.TelefoneRepresentation;
+import com.psicagenda.api.mapper.representations.TelefoneRepresentationInput;
+import com.psicagenda.api.model.Pessoas;
 import com.psicagenda.api.model.Telefones;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +32,19 @@ public class TelefoneMapper {
         return telefoneList.stream()
                 .map(this::toTelefoneRepresentation)
                 .collect(Collectors.toList());
+    }
+
+    public Telefones toTelefoneModelRepresentation(TelefoneRepresentationInput telefoneInput, Pessoas pessoas) {
+
+        return Telefones.builder()
+                .ddi(telefoneInput.getDdi())
+                .ddd(telefoneInput.getDdd())
+                .numero(telefoneInput.getNumero())
+                .tipoTelefoneEnum(telefoneInput.getTipoTelefone())
+                .descricao(telefoneInput.getDescricao())
+                .pessoas(pessoas)
+                .status(telefoneInput.getStatus() == null || telefoneInput.getStatus())
+                .build();
     }
 
     private PessoaIdRRepresentation getPessoaID(Telefones telefones) {

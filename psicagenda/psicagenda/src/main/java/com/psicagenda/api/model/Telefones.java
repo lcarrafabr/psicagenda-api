@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -23,7 +24,7 @@ public class Telefones {
     private Long telefoneId;
 
     @NotBlank
-    @Column(name = "uuid_telefone", length = 36)
+    @Column(name = "uuid_telefone", length = 36, updatable = false)
     private String uuidTelefone;
 
     @NotBlank
@@ -57,6 +58,17 @@ public class Telefones {
     @PrePersist
     void aoCadastrar() {
 
-        status = true;
+        setUuidTelefone(UUID.randomUUID().toString());
+        setDdd(String.format("%03d", Integer.parseInt(ddd)));
+        setStatus(true);
+        verificaFormatoDdi();
+    }
+
+    private void verificaFormatoDdi() {
+
+        if (ddi != null && !ddi.matches("^\\+\\d{1,3}$")) {
+            setDdi("+".concat(ddi));
+        }
+
     }
 }
