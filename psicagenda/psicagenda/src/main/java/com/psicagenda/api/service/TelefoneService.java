@@ -12,4 +12,8 @@ public interface TelefoneService {
     Telefones buscaTelefonePorCodigoTelefone(String codigoTelefone, String tokenId);
 
     Telefones atualizaTelefoneProfissional(String tokenId, String codigoTelefone, TelefoneRepresentationInput telefoneInput);
+
+    void removerTelefone(String codigoTelefone);
+
+    void atualizaStatusAtivo(String codigoTelefone, Boolean ativo);
 }

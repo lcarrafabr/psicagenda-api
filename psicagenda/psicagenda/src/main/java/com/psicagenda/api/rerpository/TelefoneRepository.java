@@ -16,4 +16,8 @@ public interface TelefoneRepository extends JpaRepository<Telefones, Long> {
             "and pessoa_id = :codigoPessoa ")
     Optional<Telefones> findByCodigoTelefoneECodigoPessoa(@Param("codigoTelefone") String codigoTelefone,
                                                @Param("codigoPessoa") Long codigoPessoa);
+
+    void deleteByUuidTelefone(@Param("codigoTelefone") String codigoTelefone);
+
+    Optional<Telefones> findByUuidTelefone(@Param("codigoTelefone") String codigoTelefone);
 }

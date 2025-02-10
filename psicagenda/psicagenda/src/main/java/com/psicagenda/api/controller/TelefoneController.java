@@ -67,4 +67,18 @@ public class TelefoneController {
 
         return ResponseEntity.ok(telefoneAtualizado);
     }
+
+    @DeleteMapping("/{codigoTelefone}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removerTelefoneProfissional(@PathVariable String codigoTelefone) {
+
+        telefoneService.removerTelefone(codigoTelefone);
+    }
+
+    @PutMapping("/{codigoTelefone}/ativo")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atualizarStatusAtivo(@PathVariable String codigoTelefone, @RequestBody Boolean ativo) {
+
+        telefoneService.atualizaStatusAtivo(codigoTelefone, ativo);
+    }
 }
